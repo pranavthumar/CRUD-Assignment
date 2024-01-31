@@ -1,0 +1,123 @@
+<!-- <div class="container">
+    <label for="objectDropdown">Select Object:</label>
+    <select id="objectDropdown" [(ngModel)]="selectedObject">
+      <option value="object1">Object 1</option>
+    </select>
+  
+    <label for="fieldDropdown">Select Field:</label>
+    <select id="fieldDropdown" [(ngModel)]="selectedField">
+      <option value="field1">Field 1</option>
+      <option value="field2">Field 2</option>
+    </select>
+  
+    <button (click)="onEnterClick()">Enter</button>
+  </div>
+   -->
+
+
+
+
+
+
+
+<!-- salesforce.component.html -->
+
+<div class="container">
+    <label for="objectDropdown">Select Salesforce Object:</label>
+    <select [(ngModel)]="selectedObject" (change)="onObjectSelect()">
+        <option *ngFor="let obj of salesforceObjects">{{ obj }}</option>
+    </select>
+</div>
+
+<div class="container" *ngIf="objectFields.length > 0">
+    <label for="fieldDropdown">Select Fields:</label>
+    <select id="fieldDropdown" [(ngModel)]="selectedFields" multiple>
+        <option *ngFor="let field of objectFields">{{ field }}</option>
+    </select>
+
+    <button (click)="fetchData()">Fetch Data</button>
+</div>
+
+<div class="container" *ngIf="records.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let field of selectedFields">{{ field }}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of records">
+                <td *ngFor="let field of selectedFields">{{ record[field] }}</td>
+                <td>
+                    <button (click)="editRecord(record)">Edit</button>
+                    <button id="deletecss" (click)="deleteRecord(record.attributes.url)">Delete</button>
+                </td>+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div class="container" *ngIf="editedRecord.Id">
+    <h4>Edit Record</h4>
+    <div class="container" *ngFor="let field of selectedFields">
+        <label>{{ field }}:</label>
+        <input [(ngModel)]="editedRecord[field]" />
+    </div>
+    <button (click)="updateRecord()">Update Record</button>
+</div> -->
+
+
+<!-- copy of the above code   -->
+<!-- <div class="container" *ngIf="update_select">
+    <h4>Edit Record</h4>
+    <div class="container" *ngFor="let field of selectedFields">
+        <div *ngIf="fieldhash[field]">
+            <label > {{field}}</label>
+            <input type="string" [readonly]="!fieldhash[field]" [(ngModel)]="editedRecord[field]">
+        </div>
+
+
+    </div>
+    <button (click)="updateRecord(editedRecord)">Update Record</button>
+</div> -->
+
+<!-- salesforce.component.html -->
+
+<!-- ... (existing code) -->
+
+<!-- <div *ngIf="records.length > 0">
+    <h3>Data Table</h3>
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let field of selectedFields">{{ field }}</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of records">
+            <td *ngFor="let field of selectedFields">{{ record[field] }}</td>
+            <td>
+              <button (click)="editRecord(record)">Edit</button>
+              <button (click)="deleteRecord(record.attributes.url)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+
+<!-- ... (existing code) -->
+
+
+<div class="container" *ngIf="update_select">
+    <div class="container" *ngFor="let field of selectedFields">
+        <div *ngIf="fieldhash[field]">
+            <label for="field"> {{field}}</label>
+            <input type="string" [readonly]="!fieldhash[field]" [(ngModel)]="selectedrecord[field]">
+        </div>
+    </div>
+    <button class="update" (click)="updateRecord(selectedrecord)">Update</button>
+</div>
