@@ -8,8 +8,11 @@ import { Observable, catchError, map } from 'rxjs';
   providedIn: 'root'
 })
 export class SalesforceService {
-  private apiUrl = 'https://NA212.salesforce.com'; // Replace with your Salesforce instance URL
-  private accessToken = '00D8b000002ADgv!ARMAQFJ.oSy.2qDbkXn2pRw7Rw9XYITEG51JqCSTRNGJR_MfCGnfbWwYVTWHGJQhwWpp1FlWhKafoqy_uy6D.iRaCYrF7__B'; // Replace with your actual access token
+  getObjects() {
+      throw new Error('Method not implemented.');
+  }
+  private apiUrl = 'https://AP25.salesforce.com'; // Replace with your Salesforce instance URL
+  private accessToken = '00D5h000009A18S!AQIAQCaDsj2OGErkY9zoHaQNOg4Nb_RPUEmBMY7f_xoHfOzEiHvB0cxprM3fqN0aX4QWsFQ2m_U9o_4LB7gwhDKD8GmRAmAI'; // Replace with your actual access token
 
 
 
@@ -36,9 +39,9 @@ export class SalesforceService {
   }
   
    
-  setAccessToken(token: string): void {
-    this.accessToken = token;
-  }
+  // setAccessToken(token: string): void {
+  //   this.accessToken = token;
+  // }
   getAvailableObjects(): Observable<any> {
     const endpoint = `${this.apiUrl}/services/data/v58.0/sobjects`;
     return this.http.get<any>(endpoint, { headers: this.getHeaders() });

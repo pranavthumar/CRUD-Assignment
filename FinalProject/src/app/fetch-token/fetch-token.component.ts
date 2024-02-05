@@ -33,7 +33,7 @@ export class FetchTokenComponent {
       if (accessTokenMatch) {
         this.accessToken = accessTokenMatch[1];
         console.log('Access Token:', this.accessToken);
-        this.salesforceService.setAccessToken(this.accessToken)
+        // this.salesforceService.setAccessToken(this.accessToken)
         // window.close();
         //window.opener.location.href = '/salesforce';
         // You can now use this.accessToken as needed
